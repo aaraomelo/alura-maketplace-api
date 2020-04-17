@@ -1,0 +1,4 @@
+node_modules
+requests.rest
+database.sqlite
+dist
