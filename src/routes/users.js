@@ -13,7 +13,7 @@ module.exports = app => {
             Users.create(req.body)
                 .then(user => {
                     const token = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SUPERSECRET, { expiresIn: 86400 });
-                    res.status(200).send({ token })
+                    res.status(200).send({ token, user })
                 })
                 .catch(error => {
                     res.status(412).json({  token: null, message: error.message });
@@ -28,7 +28,7 @@ module.exports = app => {
                     if (!passwordIsValid)
                         return res.status(401).send({ auth: false, token: null, message: 'Senha inválida' });
                     const token = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SUPERSECRET, { expiresIn: 86400 });
-                    res.status(200).send({ token });
+                    res.status(200).send({ token, user });
                 })
                 .catch(error => {
                     res.status(401).json({ message: 'Este email não está cadastrado' });
