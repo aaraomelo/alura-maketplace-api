@@ -6,7 +6,7 @@ import { doesNotMatch } from 'assert';
 let db = null;
 
 module.exports = app => {
-    const config = app.libs.config;
+    const config = app.config.config;
     if (!db) {
         const sequelize = new Sequelize(
             config.database,

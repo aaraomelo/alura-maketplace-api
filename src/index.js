@@ -6,13 +6,13 @@ const app = express();
 consign({
     cwd: __dirname
 })
-    .include('libs/config.js')
-    .include('libs/authenticationToken.js')
+    .include('config/config.js')
+    .include('config/authenticationToken.js')
     .then('db.js')
-    .then('libs/middlewares.js')
-    .then('libs/token.js')
+    .then('config/middlewares.js')
+    .then('config/token.js')
     .then('routes')
-    .then('libs/boot.js')
+    .then('config/boot.js')
     .into(app)
 
 
