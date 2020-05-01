@@ -44,27 +44,5 @@ module.exports = app => {
 
     })
 
-    // app.route('/users/:id')
-    //     .get((req, res) => {
-    //         Users.findOne({ where: req.params })
-    //             .then(result => res.json(result))
-    //             .catch(error => {
-    //                 res.status(412).json({ message: error.message });
-    //             });
 
-    //     })
-    //     .delete((req, res) => {
-    //         Users.destroy({ where: req.params })
-    //             .then(result => res.sendStatus(204))
-    //             .catch(error => {
-    //                 res.status(412).json({ message: error.message });
-    //             });
-    //     })
-    //     .put((req, res) => {
-    //         Users.update(req.body, { where: req.params })
-    //             .then(result => res.sendStatus(204))
-    //             .catch(error => {
-    //                 res.status(412).json({ message: error.message });
-    //             });
-    //     })
 };
