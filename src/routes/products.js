@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 module.exports = app => {
 
     const Products = app.db.models.Products;
@@ -11,11 +13,18 @@ module.exports = app => {
                 });
         })
         .post((req, res) => {
-            Products.create(req.body)
-                .then(result => res.json(result))
+            axios.get(`${req.body.image}`)
+                .then( () =>
+                    Products.create(req.body)
+                        .then(result => { response => res.json(result) })
+                        .catch(error => {
+                            res.status(412).json({ message: error.message });
+                        })
+                )
                 .catch(error => {
-                    res.status(412).json({ message: error.message });
-                });
+                    res.status(412).json({ message: 'Imagem inválida' });
+                })
+
         })
 
     app.route('/products/:id')
@@ -42,4 +51,4 @@ module.exports = app => {
         })
 
 
-};;
+};

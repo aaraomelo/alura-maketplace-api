@@ -5,17 +5,43 @@ module.exports = (sequelize, DataType) => {
             primaryKey: true,
             autoIncrement: true
         },
-        title: {
+        description: {
             type: DataType.STRING,
             allowNull: false,
-            validade: {
-                notEmpty: true
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "É necessário uma descrição do produto"
+                },
+                len: {
+                    args: [10, 1000],
+                    msg: "A descrição deve ter no mínimo 10 caracteres"
+                }
             }
         },
-        done: {
-            type: DataType.BOOLEAN,
+        price: {
+            type: DataType.STRING,
             allowNull: false,
-            defaultValue: false
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "É necessário informar o preço do produto"
+                },
+                isDecimal: {
+                    args: true,
+                    msg: "O preço deve ser um número decimal"
+                }
+            }
+        },
+        image: {
+            type: DataType.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "É necessário uma imagem do produto"
+                }
+            }
         }
     })
 
